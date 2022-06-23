@@ -99,7 +99,9 @@ impl Options {
             config.ipc_socket |= self.socket.is_some();
         }
 
-        config.window.dynamic_title &= self.window_options.window_identity.title.is_none();
+	if config.window.preserve_title {
+            config.window.dynamic_title &= self.window_options.window_identity.title.is_none();
+	}
         config.window.embed = self.embed.as_ref().and_then(|embed| embed.parse().ok());
         config.debug.print_events |= self.print_events;
         config.debug.log_level = max(config.debug.log_level, self.log_level());

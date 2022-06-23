@@ -72,7 +72,7 @@ impl WindowContext {
         options.terminal_options.override_pty_config(&mut pty_config);
 
         let mut identity = config.window.identity.clone();
-        let preserve_title = options.window_identity.title.is_some();
+        let preserve_title = options.window_identity.title.is_some() && config.window.preserve_title;
         options.window_identity.override_identity_config(&mut identity);
 
         // Create a display.

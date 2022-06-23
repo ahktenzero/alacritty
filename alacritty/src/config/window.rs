@@ -39,6 +39,9 @@ pub struct WindowConfig {
     /// Use dynamic title.
     pub dynamic_title: bool,
 
+    /// Prevent title from changing if set in CLI options
+    pub preserve_title: bool,
+
     /// Information to identify a particular window.
     #[config(flatten)]
     pub identity: Identity,
@@ -57,6 +60,7 @@ impl Default for WindowConfig {
     fn default() -> Self {
         Self {
             dynamic_title: true,
+	    preserve_title: true,
             position: Default::default(),
             decorations: Default::default(),
             startup_mode: Default::default(),

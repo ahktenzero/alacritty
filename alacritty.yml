@@ -86,6 +86,9 @@
   # Allow terminal applications to change Alacritty's window title.
   #dynamic_title: true
 
+  # Prevent changes to title if specified in the command line options
+  #preserve_title: true
+
   # Window class (Linux/BSD only):
   #class:
     # Application instance name
