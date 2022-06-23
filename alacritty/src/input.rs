@@ -568,7 +568,7 @@ impl<T: EventListener, A: ActionContext<T>> Processor<T, A> {
     /// Handle left click selection and vi mode cursor movement.
     fn on_left_click(&mut self, point: Point) {
         let side = self.ctx.mouse().cell_side;
-
+        let rectangle_modifier = self.ctx.config().mouse.rectangle_select.0;
         match self.ctx.mouse().click_state {
             ClickState::Click => {
                 // Don't launch URLs if this click cleared the selection.
@@ -577,7 +577,7 @@ impl<T: EventListener, A: ActionContext<T>> Processor<T, A> {
                 self.ctx.clear_selection();
 
                 // Start new empty selection.
-                if self.ctx.modifiers().ctrl() {
+                if self.ctx.modifiers().contains(rectangle_modifier) {
                     self.ctx.start_selection(SelectionType::Block, point, side);
                 } else {
                     self.ctx.start_selection(SelectionType::Simple, point, side);
